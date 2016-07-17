@@ -2,7 +2,8 @@
 const fs = require('fs');
 const gm = require('gm');
 
-function collage (images, cells, finalWidth, finalHeight) {
+function collage (images, finalWidth, finalHeight) {
+  const cells = images.length;
   const cellWidth = finalWidth / cells;
   images.forEach((image, index) => {
     gm(`http://proxy.topixcdn.com/ipicimg/${image}-rszh${finalHeight + 20}`)
@@ -31,4 +32,4 @@ function collageHelper (images) {
   eval(montage);
 }
 
-collage(['MEA8SRTIVA7JE6SH', '91RRSPSC0ITDHNIR', '4TEE736PM5SPCA76'], 3, 810, 415);
+collage(['MEA8SRTIVA7JE6SH', '91RRSPSC0ITDHNIR', '4TEE736PM5SPCA76'], 810, 415);
