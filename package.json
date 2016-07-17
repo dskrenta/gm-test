@@ -1,0 +1,14 @@
+{
+  "name": "gm-test",
+  "version": "1.0.0",
+  "description": "gm-test",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard"
+  },
+  "author": "David Skrenta",
+  "license": "",
+  "dependencies": {
+    "gm": "^1.22.0"
+  }
+}
