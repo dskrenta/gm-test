@@ -1,6 +1,7 @@
 'use strict';
 const fs = require('fs');
 const gm = require('gm');
+require('base64');
 
 function overlay (images, x, y) {
   gm(`http://proxy.topixcdn.com/ipicimg/${images[0].id}-rszh${images[0].height}`)

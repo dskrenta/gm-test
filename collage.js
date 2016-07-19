@@ -1,35 +1,33 @@
 'use strict';
 const fs = require('fs');
 const gm = require('gm');
+const path = require('path');
+require('gm-base64');
 
 function collage (images, finalWidth, finalHeight) {
   const cells = images.length;
   const cellWidth = finalWidth / cells;
+  const buffers = [];
+
   images.forEach((image, index) => {
     gm(`http://proxy.topixcdn.com/ipicimg/${image}-rszh${finalHeight + 20}`)
       .resize(cellWidth, finalHeight, '^')
       .gravity('Center')
       .crop(cellWidth, finalHeight)
-      .write(`temp/${image}.jpg`, (err) => {
+      .toBuffer('PNG', (err, buffer) => {
         if (err) console.log(err);
-        if (index === cells - 1) collageHelper(images);
+        buffers.push(buffer);
+        if (index === cells - 1) collage3Helper(buffers)
       });
   })
 }
 
-function collageHelper (images) {
-  let montage;
-  images.forEach((image, index) => {
-    if (index === 0) {
-      montage = `gm('temp/${image}.jpg')`;
-    } else {
-      montage += `.append('temp/${image}.jpg', true)`;
-    }
-  })
-  montage += `.write('images/montage.jpg', (err) => {
-    if (err) { console.log(err); }
-  });`;
-  eval(montage);
+function collageHelper (buffers) {
+  gm(buffers.shift())
+    .append(buffers, true)
+    .toBase64('bmp', (err, base64Image) => {
+      console.log(base64Image);
+    });
 }
 
 collage(['MEA8SRTIVA7JE6SH', '91RRSPSC0ITDHNIR', '4TEE736PM5SPCA76'], 810, 415);

@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "gm-test",
   "main": "index.js",
-  "scripts": {
-    "test": "standard"
-  },
+  "scripts": {},
   "author": "David Skrenta",
   "license": "",
   "dependencies": {
-    "gm": "^1.22.0"
+    "gm": "^1.22.0",
+    "gm-base64": "^1.0.0"
   }
 }
