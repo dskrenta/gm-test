@@ -17,7 +17,7 @@ function collage (images, finalWidth, finalHeight) {
       .toBuffer('PNG', (err, buffer) => {
         if (err) console.log(err);
         buffers.push(buffer);
-        if (index === cells - 1) collage3Helper(buffers)
+        if (index === cells - 1) collageHelper(buffers)
       });
   })
 }
